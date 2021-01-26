@@ -1,0 +1,15 @@
+{
+  "name": "projet_cassandra_js",
+  "version": "1.0.0",
+  "description": "connection avec une base cassandra",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "https://github.com/GuillaumeRslt",
+  "license": "ISC",
+  "dependencies": {
+    "cassandra-driver": "^4.6.1",
+    "chalk": "^4.1.0"
+  }
+}
