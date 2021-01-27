@@ -132,7 +132,7 @@ var cassandra = require('cassandra-driver');
     // query pour l'insertion de données
     query = `insert into xx_keyspace_js.xx_table_js(id,name) values (uuid(), 'insert from node.js');`;
 
-    console.log('trying to insert...');
+    console.log('trying to insert 1/3...');
 
     // Insertion de données
     await new Promise(resolve => {
@@ -141,10 +141,56 @@ var cassandra = require('cassandra-driver');
             console.log('\x1b[1m\x1b[33m%s\x1b[0m', query);
 
             if (err) {
-                console.error('\x1b[31m%s\x1b[0m', `'error during insertion...'`);
+                console.error('\x1b[31m%s\x1b[0m', `'error during insertion 1/3...'`);
                 console.error(err);
             } else {
-                console.log('\x1b[32m%s\x1b[0m', `insert successfully done \n`);
+                console.log('\x1b[32m%s\x1b[0m', `insert successfully done 1/3 \n`);
+            }
+
+            resolve();
+
+        });
+    });
+
+    // query pour l'insertion de données
+    query = `insert into xx_keyspace_js.xx_table_js(id,name) values (uuid(), 'second insertion');`;
+
+    console.log('trying to insert 2/3...');
+
+    // Insertion de données
+    await new Promise(resolve => {
+        client.execute(query, (err, result) => {
+
+            console.log('\x1b[1m\x1b[33m%s\x1b[0m', query);
+
+            if (err) {
+                console.error('\x1b[31m%s\x1b[0m', `'error during insertion 2/3...'`);
+                console.error(err);
+            } else {
+                console.log('\x1b[32m%s\x1b[0m', `insert successfully done 2/3 \n`);
+            }
+
+            resolve();
+
+        });
+    });
+
+    // query pour l'insertion de données
+    query = `insert into xx_keyspace_js.xx_table_js(id,name) values (uuid(), 'third insertion');`;
+
+    console.log('trying to insert 3/3...');
+
+    // Insertion de données
+    await new Promise(resolve => {
+        client.execute(query, (err, result) => {
+
+            console.log('\x1b[1m\x1b[33m%s\x1b[0m', query);
+
+            if (err) {
+                console.error('\x1b[31m%s\x1b[0m', `'error during insertion 3/3...'`);
+                console.error(err);
+            } else {
+                console.log('\x1b[32m%s\x1b[0m', `insert successfully done 3/3 \n`);
             }
 
             resolve();
@@ -181,6 +227,8 @@ var cassandra = require('cassandra-driver');
 
         });
     });
+
+    await client.shutdown();
 
     return process.exit(0);
 
